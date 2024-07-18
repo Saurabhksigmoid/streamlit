@@ -15,6 +15,7 @@ spec:
       containers:
       - name: streamlit
         image: saurabhkambli/streamlitapp:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8501
 
