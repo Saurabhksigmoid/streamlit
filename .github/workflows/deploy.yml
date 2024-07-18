@@ -24,7 +24,8 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker buildx build --push --tag ${{ secrets.DOCKER_USERNAME }}/streamlitapp:latest .
+        IMAGE_TAG=${{ secrets.DOCKER_USERNAME }}/streamlit-app:${{ github.run_number }}
+        docker buildx build --push --tag $IMAGE_TAG .
 
     - name: Set up Kubernetes
       uses: Azure/k8s-set-context@v1
@@ -35,6 +36,7 @@ jobs:
     - name: Deploy to Kubernetes
       run: |
         kubectl create secret docker-registry myregistrykey --docker-username=${{ secrets.DOCKER_USERNAME }}  --docker-password=${{ secrets.DOCKER_PASSWORD }} --docker-email=saurabh.kambli@sigmoidanalytics.com
+        kubectl set image deployment/streamlit-app-deployment streamlit-app-container=${{ secrets.DOCKER_USERNAME }}/streamlitapp:${{ github.run_number }}
         kubectl apply -f kubernetes/deployment.yaml
         kubectl apply -f kubernetes/service.yaml
       
