@@ -35,7 +35,6 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl create secret docker-registry myregistrykey --docker-username=${{ secrets.DOCKER_USERNAME }}  --docker-password=${{ secrets.DOCKER_PASSWORD }} --docker-email=saurabh.kambli@sigmoidanalytics.com
         kubectl set image deployment/streamlit-app-deployment streamlit-app-container=${{ secrets.DOCKER_USERNAME }}/streamlitapp:${{ github.run_number }}
         kubectl apply -f kubernetes/deployment.yaml
         kubectl apply -f kubernetes/service.yaml
