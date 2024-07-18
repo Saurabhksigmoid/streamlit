@@ -35,7 +35,7 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl set image deployment/streamlit-app-deployment streamlit-app-container=${{ secrets.DOCKER_USERNAME }}/streamlitapp:${{ github.run_number }}
+        kubectl set image saurabhkambli/streamlitapp:latest streamlit-app-container=${{ secrets.DOCKER_USERNAME }}/streamlitapp:${{ github.run_number }}
         kubectl apply -f kubernetes/deployment.yaml
         kubectl apply -f kubernetes/service.yaml
       
