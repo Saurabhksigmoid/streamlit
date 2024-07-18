@@ -24,7 +24,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker buildx build --push --tag ${{ secrets.DOCKER_USERNAME }}/streamlit-app:latest .
+        docker buildx build --push --tag ${{ secrets.DOCKER_USERNAME }}/streamlitapp:latest .
 
     - name: Set up Kubernetes
       uses: Azure/k8s-set-context@v1
