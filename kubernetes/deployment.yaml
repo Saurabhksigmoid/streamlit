@@ -14,8 +14,15 @@ spec:
     spec:
       containers:
       - name: streamlit
-        image: streamlitimage.azurecr.io/streamlitapp
+        image: saurabhkambli/streamlitapp
         ports:
         - containerPort: 8501
-      imagePullSecrets:
-      - name: acr-secret
+
+    # spec:
+    #   containers:
+    #   - name: streamlit
+    #     image: streamlitimage.azurecr.io/streamlitapp
+    #     ports:
+    #     - containerPort: 8501
+    #   imagePullSecrets:
+    #   - name: acr-secret
